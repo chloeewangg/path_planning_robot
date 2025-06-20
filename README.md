@@ -33,7 +33,7 @@ The robot autonomously explores by driving to intersections, discovering and sto
 
 An example of a map and a table of the corresponding street colors are shown below. Note that for the maps we worked with, we could assume only 8 possible streets per intersection. Orange squares indicate blockages.
 
-<img src="https://github.com/user-attachments/assets/10583831-70f1-4263-87fb-7d3a5203c1a4" width="500">
+<img src="https://github.com/user-attachments/assets/826ff758-3dc2-45d9-92d9-90329e1c304c" width="500">
 
 | Street Color | Description |
 |:---|:---|
@@ -43,7 +43,16 @@ An example of a map and a table of the corresponding street colors are shown bel
 | Green | Connected to another street |
 | Red | Dead end |
 
-### Goal Finding and Directed Explore via Dijkstra's Algorithm
+### Goal Finding via Dijkstra's Algorithm
+The robot can be given a goal to go towards, whether or not that goal has been discovered and plotted. If the robot has already explored the goal, then it uses Dijkstra's algorithm with Manhattan distances from intersections as costs in order to find the lowest cost path towards the goal. If it has not explored the goal, the robot will perform a "directed explore", where it will search for the closest street facing the direction of the goal, and continue exploring down these paths until it reaches the goal.
+
+For our implementation of Dijkstra's algorithm results, we assign each intersection an "optimal direction" to the goal (indicated by yellow arrows on the map). The example below shows the robot moving towards the goal (0, -2).
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/9d823fa7-8d3f-491f-9610-90eccb07f385" width="500">
+</div>
+
+If the robot has fully explored the map, and an invalid goal is given, then the user is told the robot cannot reach that goal. However, if the robot has not fully explored the map, then it will keep searching for this goal until the map is fully explored. If there are blockages that prevent the robot from fully exploring the map, it will continue to recheck the blockages indefinitely. 
 
 ### Retrieving Prizes
 
