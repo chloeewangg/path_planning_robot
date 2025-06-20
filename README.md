@@ -9,21 +9,48 @@
 A path-planning robot which can explore, build maps, find goals, and find prizes on simple maps. The robot features a collection of robust behaviors, including line-following and blockage-detection. This project was developed as part of the Experimental Robotics course at Caltech, aiming to turn simple mechanical devices equipped with simple sensors into robust, autonomous robots.
 
 ## Features and Behaviors
-The robot is capable of line following and self-correction if it deviates off the line. The robot can also distinguish betwwe a dead-end in the path of a line and an intersection of lines, which it maps for user visualization. The robot can also determine the optimal path towards a specified intersection node through Djikstra's algorithm and can replan if it encounters a blocked road reading. The robot is also capable of turning at intersections and uses sensor and time-based feedback to accurately distinguish the robot's heading on the map. There also exists a ROS user interface that can control the robot, telling it to either explore, djikstra's to a node, or search for and retrieve a specified prize.
+### Line Following and Road Feature Detection
+
+### Turning and Self-Correction
+
+### Blockage Detection
+
+### Autonomous Exploration and Mapping
+
+### Goal Finding and Directed Explore via Dijkstra's Algorithm
+
+### Retrieving Prizes
+
+### Multi-threading
+
+### ROS Interface
+
+### User Interface
 
 ## Hardware
 - Raspberry Pi
-- IR Sensors
-- Ultrasound Sensors
-- Magnetometer
-- Geared DC Motors
-- L298N DC Motor Driver Module
+- IR Sensors (x3)
+- Ultrasound Sensors (x3)
+- Magnetometer (x2)
+- Geared DC Motors (x2)
+- L298N DC Motor Driver Module 
 - Electromagnet
 - NFC Tag Reader
+- Battery case **Robot movement is heavily subject to battery positioning
 
 ## Software
+The code is organized according to the following structure:
+| Level | File(s) | Purpose | Handles |
+|:---|:---|:---|:---|
+| Highest | [robot](https://github.com/chloeewangg/path_planning_robot/blob/main/code/robot.py) | Runs the entire system | Threading |
+| Upper Middle | [brain](https://github.com/chloeewangg/path_planning_robot/blob/main/code/brain.py) | Decision making and logic | Logic, Coordinates, Mapping | 
+| Lower Middle | [behaviors](https://github.com/chloeewangg/path_planning_robot/blob/main/code/behaviors.py) | Manages behaviors (i.e. line following, turning, etc.) | Feedback and detectors |
+| Lowest | [IR_sensor](https://github.com/chloeewangg/path_planning_robot/blob/main/code/IR_sensor.py) [NFC_sensor](https://github.com/chloeewangg/path_planning_robot/blob/main/code/NFC_sensor.py) [driver](https://github.com/chloeewangg/path_planning_robot/blob/main/code/driver.py) [electromagnet](https://github.com/chloeewangg/path_planning_robot/blob/main/code/electromagnet.py) [magnetometer](https://github.com/chloeewangg/path_planning_robot/blob/main/code/magnetometer.py) [proximity_sensor](https://github.com/chloeewangg/path_planning_robot/blob/main/code/proximity_sensor.py) | Hardware Interface | Pins, PWM, bits |
+
+### Software Used
 - Python
-- RealVNC virtual machine
+- Numpy
+- Matplotlib
 
 ## Learning Outcomes
 
