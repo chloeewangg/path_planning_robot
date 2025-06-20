@@ -36,7 +36,7 @@ A path-planning robot which can explore, build maps, find goals, and find prizes
 - L298N DC Motor Driver Module 
 - Electromagnet
 - NFC Tag Reader
-- Battery case **Robot movement is heavily subject to battery positioning
+- Battery + Battery case **Robot movement is heavily subject to battery positioning
 
 ## Software
 The code is organized according to the following structure:
