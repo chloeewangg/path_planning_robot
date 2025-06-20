@@ -6,7 +6,7 @@
 
 [DEMO VIDEO](https://www.youtube.com/watch?v=NP6a2vPLHQw)
 
-A path planning robot which can explore, build maps, find goals, and find prizes on simple maps. The robot features a collection of robust behaviors, including line-following and blockage-detection. This project was developed as part of the Experimental Robotics course at Caltech, aiming to turn simple mechanical devices equipped with simple sensors into robust, autonomous robots.
+A path planning robot which can explore, build maps, find goals, and find prizes on simple maps. The robot features a collection of robust behaviors, including line-following and blockage-detection, which are produced from imperfect hardware and limited information. This project was developed as part of the Experimental Robotics course at Caltech, aiming to turn simple mechanical devices equipped with simple sensors into robust, autonomous robots.
 
 ## Features
 ### Line Following and Road Feature Detection
@@ -106,7 +106,7 @@ We utilize multiple threads to protect data as it is updated between files. Belo
 The ROS interface allows the robot to receive external commands, enabling a remote computer to send commands to the robot and view its position.
 
 ### Battery Case
-The robot features a battery case to maintain a consistent positioning of the battery and raspberry pi. He is a cat ᓚ₍ ^. .^₎. Since we used simple and cheap hardware, the positioning of the battery widely affected the driving of the robot, necessitating the case. 
+The robot features a cat ᓚ₍ ^. .^₎ battery case to maintain a consistent positioning of the battery and raspberry pi. Since we used simple and cheap hardware, the positioning of the battery widely affected the driving of the robot, necessitating the case. 
 
 ## Hardware
 - Raspberry Pi
@@ -135,8 +135,16 @@ The code is organized according to the following structure:
 
 ## Learning Outcomes
 ### Skills
+- Integrated a variety of sensor modalities and applied signal processing techniques to sensor data.
+- Implemented a multi-threaded architecture.
+- Practiced debugging techniques for both hardware and software.
+- Produced robust autonomous behavior from imperfect hardware and limited information.
 
 ### Challenges and Known Issues
+- The turn timing of the robot is very sensitive to the mass of the robot and battery level. If the robot collides as it is turning, this can also cause it the turn time to increase and not match the turn times for each heading.
+- We sought for robustnessness over optimality, so some behaviors (e.g. searching for an unknown goal) can take a very long time.
+- The cone of the front ultrasonic sensor can sometimes cause the robot to read blockages that are not directly in front of it. Fixing this will require further tuning of the ultrasound distance thresholds.
+- The robot can end up in a "stalemate" with another robot if it drives down a street at the same time as another robot. Fixing this will require implementing a u-turn behavior after waiting at a blockage for some time.
 
 ## Contributors
 - Ritta Choi (mchoi2@caltech.edu)
