@@ -6,7 +6,7 @@
 
 [DEMO VIDEO](https://www.youtube.com/watch?v=NP6a2vPLHQw)
 
-A path-planning robot which can explore, build maps, find goals, and find prizes on simple maps. The robot features a collection of robust behaviors, including line-following and blockage-detection. This project was developed as part of the Experimental Robotics course at Caltech, aiming to turn simple mechanical devices equipped with simple sensors into robust, autonomous robots.
+A path planning robot which can explore, build maps, find goals, and find prizes on simple maps. The robot features a collection of robust behaviors, including line-following and blockage-detection. This project was developed as part of the Experimental Robotics course at Caltech, aiming to turn simple mechanical devices equipped with simple sensors into robust, autonomous robots.
 
 ## Features
 ### Line Following and Road Feature Detection
@@ -29,6 +29,19 @@ The robot is equipped with 3 ultrasonic sensors which can detect objects. Howeve
 As the robot is driving, if it detects a blockage within 10 cm, it will stop and wait for it to clear. If the robot is at an intersection and detects a blockage on the street it is facing, then the map will be updated to show a blockage. To make blockage detection more robust, the robot takes multiple readings at each intersection, and responds to the median value. 
 
 ### Autonomous Exploration and Mapping
+The robot autonomously explores by driving to intersections, discovering and storing the information about the streets of each intersection, and plotting this information on a map. It will continue exploring until all streets are explored or it is fully blocked. Restarting an explore will clear the blockages, resulting in the robot checking any previous blockages again. If these blockages have been removed, the robot will continue exploring and building upon the same map. 
+
+An example of a map and a table of the corresponding street colors are shown below. Note that for the maps we worked with, we could assume only 8 possible streets per intersection. Orange squares indicate blockages.
+
+<img src="https://github.com/user-attachments/assets/10583831-70f1-4263-87fb-7d3a5203c1a4" width="500">
+
+| Street Color | Description |
+|:---|:---|
+| Black | Undiscovered |
+| Gray | Nonexistent |
+| Blue | Unexplored (but discovered) |
+| Green | Connected to another street |
+| Red | Dead end |
 
 ### Goal Finding and Directed Explore via Dijkstra's Algorithm
 
