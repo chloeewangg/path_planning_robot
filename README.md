@@ -6,7 +6,9 @@
 
 [DEMO VIDEO](https://www.youtube.com/watch?v=NP6a2vPLHQw)
 
-A path planning robot which can explore, build maps, find goals, and find prizes on simple maps. The robot features a collection of robust behaviors, including line-following and blockage-detection, which are produced from imperfect hardware and limited information. This project was developed as part of the Experimental Robotics course at Caltech, aiming to turn simple mechanical devices equipped with simple sensors into robust, autonomous robots.
+A path planning robot which can explore, build maps, find goals, and find prizes on simple maps. The robot features a collection of robust behaviors, including line-following and blockage-detection, which are produced from imperfect hardware and limited information. 
+
+This project was developed as part of the Experimental Robotics course at Caltech, aiming to turn simple mechanical devices equipped with simple sensors into robust, autonomous robots.
 
 ## Features
 ### Line Following and Road Feature Detection
