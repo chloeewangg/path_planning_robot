@@ -28,6 +28,9 @@ The robot is equipped with 3 ultrasonic sensors which can detect objects. Howeve
 
 As the robot is driving, if it detects a blockage within 10 cm, it will stop and wait for it to clear. If the robot is at an intersection and detects a blockage on the street it is facing, then the map will be updated to show a blockage. To make blockage detection more robust, the robot takes multiple readings at each intersection, and responds to the median value. 
 
+### Manual Driving
+The user can manually drive the robot around the map by commanding it to turn right, turn left, and go straight. The map is updated as the user drives. If the street ahead is blocked or nonexistent, the program will prevent the user from driving forward.
+
 ### Autonomous Exploration and Mapping
 The robot autonomously explores by driving to intersections, discovering and storing the information about the streets of each intersection, and plotting this information on a map. It will continue exploring until all streets are explored or it is fully blocked. Restarting an explore will clear the blockages, resulting in the robot checking any previous blockages again. If these blockages have been removed, the robot will continue exploring and building upon the same map. 
 
@@ -48,19 +51,49 @@ The robot can be given a goal to go towards, whether or not that goal has been d
 
 For our implementation of Dijkstra's algorithm results, we assign each intersection an "optimal direction" to the goal (indicated by yellow arrows on the map). The example below shows the robot moving towards the goal (0, -2).
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/9d823fa7-8d3f-491f-9610-90eccb07f385" width="500">
-</div>
+<img src="https://github.com/user-attachments/assets/9d823fa7-8d3f-491f-9610-90eccb07f385" width="500">
 
 If the robot has fully explored the map, and an invalid goal is given, then the user is told the robot cannot reach that goal. However, if the robot has not fully explored the map, then it will keep searching for this goal until the map is fully explored. If there are blockages that prevent the robot from fully exploring the map, it will continue to recheck the blockages indefinitely. 
 
 ### Retrieving Prizes
+The robot can retrieve prizes (magnetic washers) throughout the map. Beneath each intersection is an NFC tag with ID information about that intersection. The robot is equipped with an NFC reader so that each time it pulls up on an intersection, it reads this ID. The robot is also provided with a dictionary so that using this ID, it can determine how far each prize is. 
+
+<img src="https://github.com/user-attachments/assets/27c1f8ac-cb92-4dfd-82e6-228a5a37ad88" width="500">  
+
+The fetch process follows the proceeding steps:
+1. The robot stores the prize information for the intersection it is currently at.
+2. The robot turns to determine where all the streets of that intersection are. Then it chooses the closest unexplored street and goes down that street.
+3. The robot checks and stores the prize information of this next intersection. It then compares how far the prize is from the current intersection and from the previous intersection. If the current intersection is closer, it will repeat going to the closest unexplored street. If the current intersection is further, it will return to the previous intersection and go down a different unexplored street.
+4. Repeat until 2 intersections that are 0.5 streets from the prize are found (meaning the prize is between these 2 intersections).
+5. To retrieve the prize, the robot drives between the 2 intersections until it detects a prize feature.
+6. The robot picks up the prize using the electromagnet.
+7. The robot uses Dijkstra's algorithm to return home (the robot's starting position).
+8. The robot drops the prize off at the dead end connected to this home intersection.
+
+### User Interface
+The robot operates according to the following input commands:
+|Command|Input|Description|
+|:---|:---|:---|
+|Explore|E|Starts the explore behavior.|
+|Goal|G|Asks the user for the goal's coordinates and goes to that goal.|
+|Fetch|F|Asks the user for the prize number and fetches that prize.|
+|Pause|PA|Pauses the robot if it is exploring, going to a goal, or fetching.|
+|Step|SP|Allows the robot to move one step and stop again if it is exploring, going to a goal, or fetching.|
+|Resume|R|Resumes exploring, going to a goal, or fetching if the robot is paused.|
+|Left|LT|Makes the robot turn left.|
+|Right|RT|Makes the robot turn right.|
+|Straight|S|Makes the robot go straight.|
+|Save|SV|Saves the current map to a .pickle file.|
+|Load|LO|Loads a previously saved map.|
+|Clear|CL|Clears the current map.|
+|Pose|P|Moves the robot to a new coordinate and heading.|
+|Show|SH|Shows the most recently updated map.|
+|Clear blockage|CB|Clears all blockages from the map.|
+|Quit|Q|Exits the program.|
 
 ### Multi-threading
 
 ### ROS Interface
-
-### User Interface
 
 ## Hardware
 - Raspberry Pi
