@@ -24,6 +24,9 @@ To determine the angle it turned, it relies on (i) how long the turn took, (ii) 
 If the turn angle determined by (i) and (ii) is not in (iii), then, if possible, turn angle is automatically corrected to the nearest angle in (iii). If correction is not possible, then the robot most likely has or will turn onto a nonexistent street (meaning the street is not there according the map). The robot will then declare itself lost and ask for help from the user.
 
 ### Blockage Detection
+The robot is equipped with 3 ultrasonic sensors which can detect objects. However, we found our robot worked sufficiently using only the front sensor. 
+
+As the robot is driving, if it detects a blockage within 10 cm, it will stop and wait for it to clear. If the robot is at an intersection and detects a blockage on the street it is facing, then the map will be updated to show a blockage. To make blockage detection more robust, the robot takes multiple readings at each intersection, and responds to the median value. 
 
 ### Autonomous Exploration and Mapping
 
@@ -63,10 +66,7 @@ The code is organized according to the following structure:
 - Matplotlib
 
 ## Learning Outcomes
-
 ### Skills
-State estimation.
-Filtering.
 
 ### Challenges and Known Issues
 
