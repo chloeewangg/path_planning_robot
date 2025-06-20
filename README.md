@@ -92,8 +92,21 @@ The robot operates according to the following input commands:
 |Quit|Q|Exits the program.|
 
 ### Multi-threading
+We utilize multiple threads to protect data as it is updated between files. Below are descriptions of the threads.
+|Thread|Description|
+|:---|:---|
+|Main (robot)| Runs the main functions of the robot. |
+|UI| Ensures the program is constantly listening for user commands. |
+|GPIO| Handles GPIO interactions. |
+|Trigger| Allows the ultrasonic sensors to trigger at random times (to protect against interference). |
+|NFC| Allows the robot to constant read for NFC tags. |
+|Matplotlib| Handles Matplotlib operations. |
 
 ### ROS Interface
+The ROS interface allows the robot to receive external commands, enabling a remote computer to send commands to the robot and view its position.
+
+### Battery Case
+The robot features a battery case to maintain a consistent positioning of the battery and raspberry pi. He is a cat ᓚ₍ ^. .^₎. Since we used simple and cheap hardware, the positioning of the battery widely affected the driving of the robot, necessitating the case. 
 
 ## Hardware
 - Raspberry Pi
@@ -104,7 +117,7 @@ The robot operates according to the following input commands:
 - L298N DC Motor Driver Module 
 - Electromagnet
 - NFC Tag Reader
-- Battery + Battery case **Robot movement is heavily subject to battery positioning
+- Battery + Battery case 
 
 ## Software
 The code is organized according to the following structure:
